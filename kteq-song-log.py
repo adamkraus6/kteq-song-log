@@ -173,6 +173,17 @@ def nowPlaying( source=LOG_ID ):
 			line = default
 	nowPlay.write(line)
 
+def refreshShowList():
+	showName.set('')
+	showList = None
+	showList = shows.Shows()
+	
+	showName.set(showList.list[0])
+	showNameList['menu'].delete(0, 'end')
+	for show in showList.list:
+		showNameList['menu'].add_command(label=show, command=lambda s=show: showName.set(s))
+	
+
 #create the window and title it
 root = Tk()
 root.title("KTEQ 91.3FM SONG AND PSA LOG")
@@ -186,27 +197,27 @@ tickFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 logoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 
 #place frames
-infoFrame.grid(column=0, row=0,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
-songFrame.grid(column=0, row=5,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
-psaFrame.grid( column=6, row=5,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
-idFrame.grid(  column=6, row=0,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
-tickFrame.grid(column=0, row=10, columnspan=18, rowspan=5, sticky=(N, W, E, S))
-logoFrame.grid(column=12, row=0,  columnspan=6, rowspan=10, sticky=(N, W, E, S))
+infoFrame.grid(column=0,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+songFrame.grid(column=0,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+psaFrame.grid( column=6,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+idFrame.grid(  column=6,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+tickFrame.grid(column=0,  row=10, columnspan=18, rowspan=5,  sticky=(N, W, E, S))
+logoFrame.grid(column=12, row=0,  columnspan=6,  rowspan=10, sticky=(N, W, E, S))
 
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
-shows = shows.Shows()
+showList = shows.Shows()
 psas = psa.PSA()
 instructions = instructions.Instructions()
 
 #Create the variables
 showName = StringVar()
-showName.set(shows.list[0])
+showName.set(showList.list[0])
 
 psaName = StringVar()
 psaName.set(psas.list[0])
 
-songName = StringVar()
-songArtist = StringVar()
+songName     = StringVar()
+songArtist   = StringVar()
 songComposer = StringVar()
 
 
@@ -220,30 +231,32 @@ img_logo = ImageTk.PhotoImage(file="img/kteq-logo.jpg")
 
 #Place Text Boxes
 songComposer_entry.grid(column=3, row=3, columnspan=6, sticky=(W, E))
-songArtist_entry.grid(column=3, row=2, columnspan=6, sticky=(W, E))
-songName_entry.grid(column=3, row=1, columnspan=6, sticky=(W, E))
+songArtist_entry.grid(  column=3, row=2, columnspan=6, sticky=(W, E))
+songName_entry.grid(    column=3, row=1, columnspan=6, sticky=(W, E))
 
 
 #Create drop downs
-showNameList = OptionMenu(infoFrame, showName, *shows.list)
-psaNameList = OptionMenu(psaFrame, psaName, *psas.list)
+showNameList = OptionMenu(infoFrame, showName, *showList.list)
+psaNameList  = OptionMenu(psaFrame, psaName, *psas.list)
 
 #Place Drop Downs
 showNameList.grid(column=3, row=1, sticky=(W, E))
 psaNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 
 #Create buttons
-logSong = ttk.Button(songFrame, text="Log Song", command=logSong)
-logPSA = ttk.Button(psaFrame, text="Log PSA", command=logPSA)
-logID = ttk.Button(idFrame, text="Log ID", command=logID)
+logSong      = ttk.Button(songFrame, text="Log Song",     command=logSong)
+logPSA       = ttk.Button(psaFrame,  text="Log PSA",      command=logPSA)
+logID        = ttk.Button(idFrame,   text="Log ID",       command=logID)
+refreshShows = ttk.Button(infoFrame, text="Refresh List", command=refreshShowList)
 
 #Create Image
 imgLogo = ttk.Label(logoFrame, image=img_logo)
 
 #place buttons
-logSong.grid(column=2, row=4, sticky=(W, E))
-logPSA.grid(column=2, row=3, sticky=(W, E))
-logID.grid(column=2, row=3, sticky=(N, W, E, S))
+logSong.grid(     column=2, row=4, sticky=(W, E))
+logPSA.grid(      column=2, row=3, sticky=(W, E))
+logID.grid(       column=2, row=3, sticky=(N, W, E, S))
+refreshShows.grid(column=3, row=2, sticky=(N, W, E, S))
 
 #Place Image
 imgLogo.grid(column=2, row=3, sticky=(N, W, E, S))
@@ -295,10 +308,10 @@ prevSong5composer_lbl = ttk.Label(tickFrame, padding=6, text="")
 prevSong5show_lbl     = ttk.Label(tickFrame, padding=6, text="")
 
 #Place labels
-songName_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
-songArtist_lbl.grid(column=0, row=2, columnspan=3, sticky=W)
+songName_lbl.grid(    column=0, row=1, columnspan=3, sticky=W)
+songArtist_lbl.grid(  column=0, row=2, columnspan=3, sticky=W)
 songComposer_lbl.grid(column=0, row=3, columnspan=3, sticky=W)
-psa_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
+psa_lbl.grid(         column=0, row=1, columnspan=3, sticky=W)
 
 #Place Instructions
 howTo_Show_lbl.grid(column=0, row=0, columnspan=5, sticky=W)
