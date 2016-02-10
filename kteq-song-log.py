@@ -1,9 +1,19 @@
 from tkinter import *
 from tkinter import ttk
+import csv
+import datetime
 
 
 def logSong(*args):
-	pass
+	song     = songName.get()
+	artist   = songArtist.get()
+	composer = songComposer.get()
+	show     = showName.get()
+	time     = datetime.datetime.now()
+
+	with open('songs.csv', 'a', newline='') as songlog:
+		songwriter = csv.writer(songlog, delimiter=',')
+		songwriter.writerow([show, song, artist, composer, time])
 
 def logID():
 	pass
