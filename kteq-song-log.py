@@ -16,10 +16,21 @@ def logSong(*args):
 		songwriter.writerow([show, song, artist, composer, time])
 
 def logID():
-	pass
+	show = showName.get()
+	time = datetime.datetime.now()
+	
+	with open('id.csv', 'a', newline='') as idlog:
+		idwriter = csv.writer(idlog, delimiter=',')
+		idwriter.writerow([show, time])
 
 def logPSA(*args):
-	pass
+	show = showName.get()
+	psa  = psaName.get()
+	time = datetime.datetime.now()
+
+	with open('psa.csv', 'a', newline='') as psalog:
+		psawriter = csv.writer(psalog, delimiter=',')
+		psawriter.writerow([show, psa, time])
 
 
 #create the window and title it
