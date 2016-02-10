@@ -1,8 +1,13 @@
+#!/usr/bin/python3
+
 from tkinter import *
 from tkinter import ttk
 import csv
 import datetime
 
+#imports
+import shows
+import psa
 
 def logSong(*args):
 	song     = songName.get()
