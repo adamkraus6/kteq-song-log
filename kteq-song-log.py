@@ -46,7 +46,7 @@ def logPSA(*args):
 	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
 
 	with open(filename, 'a', newline='') as psalog:
-		psawriter = csv.writer(psalog, delimeter=',')
+		psawriter = csv.writer(psalog, delimiter=',')
 		psawriter.writerow([date, time, psa, 'PSA', '', show])
 
 	with open(filename2, 'a', newline='') as psalog:
@@ -131,5 +131,6 @@ songName_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
 songArtist_lbl.grid(column=0, row=2, columnspan=3, sticky=W)
 songComposer_lbl.grid(column=0, row=3, columnspan=3, sticky=W)
 psa_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
+
 
 root.mainloop()
