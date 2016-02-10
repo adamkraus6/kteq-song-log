@@ -256,7 +256,7 @@ imgLogo = ttk.Label(logoFrame, image=img_logo)
 logSong.grid(     column=2, row=4, sticky=(W, E))
 logPSA.grid(      column=2, row=3, sticky=(W, E))
 logID.grid(       column=2, row=3, sticky=(N, W, E, S))
-refreshShows.grid(column=3, row=2, sticky=(N, W, E, S))
+refreshShows.grid(column=2, row=1, sticky=(N, W, E, S))
 
 #Place Image
 imgLogo.grid(column=2, row=3, sticky=(N, W, E, S))
