@@ -5,6 +5,9 @@ from tkinter import ttk
 import csv
 import datetime
 
+#imports
+import show
+import psa
 
 def logSong(*args):
 	song     = songName.get()
