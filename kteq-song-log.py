@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 import csv
 import datetime
+from PIL import ImageTk, Image
 
 #imports
 import shows
@@ -32,7 +33,7 @@ def logSong(*args):
 	nowPlaying(source=LOG_SONG)
 
 	#update ticker
-	updateTicker()
+	updateTicker(source=LOG_SONG)
 
 	#clear everything for next submission
 	songName_entry.delete(0, 'end')
@@ -55,7 +56,7 @@ def logID():
 	nowPlaying(source=LOG_ID)
 
 	#update ticker
-	updateTicker()
+	updateTicker(source=LOG_ID)
 
 
 def logPSA(*args):
@@ -80,7 +81,7 @@ def logPSA(*args):
 	nowPlaying(source=LOG_PSA)
 
 	#update ticker
-	updateTicker()
+	updateTicker(source=LOG_PSA)
 
 def updateTicker(source=LOG_ID):
 	
@@ -90,7 +91,9 @@ def updateTicker(source=LOG_ID):
 	show     = showName.get()
 	now      = datetime.datetime.now()
 	psa      = psaName.get()
-	
+	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
+	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
+
 	prevSong5date_lbl.config(    text=prevSong4date_lbl.cget("text"))
 	prevSong5time_lbl.config(    text=prevSong4time_lbl.cget("text"))
 	prevSong5title_lbl.config(   text=prevSong4title_lbl.cget("text"))
@@ -179,13 +182,15 @@ songFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 psaFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
 idFrame   = ttk.Frame(root, borderwidth=5, relief="sunken")
 tickFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
+logoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 
 #place frames
-infoFrame.grid(column=0, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-songFrame.grid(column=0, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-psaFrame.grid( column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-idFrame.grid(  column=6, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-tickFrame.grid(column=0, row=10, columnspan=12, rowspan=5, sticky=(N, W, E, S))
+infoFrame.grid(column=0, row=0,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
+songFrame.grid(column=0, row=5,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
+psaFrame.grid( column=6, row=5,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
+idFrame.grid(  column=6, row=0,  columnspan=6, rowspan=5, sticky=(N, W, E, S))
+tickFrame.grid(column=0, row=10, columnspan=18, rowspan=5, sticky=(N, W, E, S))
+logoFrame.grid(column=12, row=0,  columnspan=6, rowspan=10, sticky=(N, W, E, S))
 
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
 shows = shows.Shows()
@@ -208,6 +213,8 @@ songName_entry     = ttk.Entry(songFrame, width=7, textvariable=songName)
 songArtist_entry   = ttk.Entry(songFrame, width=7, textvariable=songArtist)
 songComposer_entry = ttk.Entry(songFrame, width=7, textvariable=songComposer)
 
+#Create image
+img_logo = ImageTk.PhotoImage(file="img/kteq-logo.jpg")
 
 #Place Text Boxes
 songComposer_entry.grid(column=3, row=3, columnspan=3, sticky=(W, E))
@@ -223,17 +230,21 @@ psaNameList = OptionMenu(psaFrame, psaName, *psas.list)
 showNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 psaNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 
-
 #Create buttons
 logSong = ttk.Button(songFrame, text="Log Song", command=logSong)
 logPSA = ttk.Button(psaFrame, text="Log PSA", command=logPSA)
 logID = ttk.Button(idFrame, text="Log ID", command=logID)
 
+#Create Image
+imgLogo = ttk.Label(logoFrame, image=img_logo)
 
 #place buttons
 logSong.grid(column=2, row=4, sticky=(W, E))
 logPSA.grid(column=2, row=3, sticky=(W, E))
 logID.grid(column=2, row=3, sticky=(N, W, E, S))
+
+#Place Image
+imgLogo.grid(column=2, row=3, sticky=(N, W, E, S))
 
 
 #Create labels
