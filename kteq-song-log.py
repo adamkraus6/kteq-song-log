@@ -24,6 +24,10 @@ def logSong(*args):
 		songwriter = csv.writer(songlog, delimiter=',')
 		songwriter.writerow([date, time, song, artist, composer, show])
 
+	#log to nowPlaying.txt
+	nowPlaying()
+
+	#clear everything for next submission
 	songName_entry.delete(0, 'end')
 	songArtist_entry.delete(0, 'end')
 	songComposer_entry.delete(0, 'end')
@@ -39,6 +43,8 @@ def logID():
 	with open(filename, 'a', newline='') as idlog:
 		idwriter = csv.writer(idlog, delimiter=',')
 		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
+	#log to nowPlaying.txt
+	nowPlaying()
 
 def logPSA(*args):
 	show = showName.get()
@@ -57,7 +63,23 @@ def logPSA(*args):
 	with open(filename2, 'a', newline='') as psalog:
 		psawriter = csv.writer(psalog, delimiter=',')
 		psawriter.writerow([date, time, psa])
+	#log to nowPlaying.txt
+	nowPlaying()
 
+def nowPlaying():
+	#Write to a file what song is currently playing (or what have you)
+	filename = 'nowPlaying.txt'
+	song     = songName.get()
+	artist   = songArtist.get()
+	psa      = psaName.get()
+	nowPlay  = open(filename, 'w')
+	if(artist=='' and psa!=''):
+		line = psa + ' - Public Service Announcement'
+	elif(artist=='' and song==''):
+		line = "KTEQ FM 91.3 Rapid City, South Dakota"
+	else:
+		line = song + ' by ' + artist
+	nowPlay.write(line)
 
 #create the window and title it
 root = Tk()

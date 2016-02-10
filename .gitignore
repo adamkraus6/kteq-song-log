@@ -58,3 +58,6 @@ target/
 
 # Ignore .csv files generated
 *.csv
+
+# Ignore nowPlaying.txt
+nowPlaying.txt
