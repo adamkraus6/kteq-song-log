@@ -8,8 +8,9 @@ class PSA(object):
 
   def __init__(self):
     self.list = []
-    self.list.append("PSA 1")
-    self.list.append("PSA 2")
+    self.list.append("LISTEN UP MAGGOTS")
+    self.list.append("DAD O'CLOCK")
+    self.list.append("HEART ATTACK SONG")
   
 
 if __name__ == '__main__':

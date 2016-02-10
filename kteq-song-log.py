@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/binpython3
 
 from tkinter import *
 from tkinter import ttk
@@ -80,12 +80,16 @@ idFrame = ttk.Frame(root, borderwidth=5, relief="sunken", width=400, height=250)
 idFrame.grid(column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
 
 
+#CREATE NEW INSTANCE OF SHOWS AND PSAS
+shows = shows.Shows()
+psas = psa.PSA()
+
 #Create the variables
 showName = StringVar()
-showName.set("Select Show Name")
+showName.set(shows.list[0])
 
 psaName = StringVar()
-psaName.set("PSA 1")
+psaName.set(psas.list[0])
 
 songName = StringVar()
 songArtist = StringVar()
@@ -105,8 +109,8 @@ songName_entry.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 
 
 #Create drop downs
-showNameList = OptionMenu(infoFrame, showName, "Select Show Name", "The Jambulance", "Bear Bacon")
-psaNameList = OptionMenu(psaFrame, psaName, "PSA 1", "PSA 2", "PSA 3", "PSA 4")
+showNameList = OptionMenu(infoFrame, showName, *shows.list)
+psaNameList = OptionMenu(psaFrame, psaName, *psas.list)
 
 #Place Drop Downs
 showNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))

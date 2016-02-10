@@ -8,6 +8,7 @@ class Shows(object):
 
   def __init__(self):
     self.list = []
+    self.list.append("Free Play/Unscripted")
     self.list.append("The Jambulance")
     self.list.append("Bear Bacon")
   
