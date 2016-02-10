@@ -222,9 +222,6 @@ psaFrame.grid(column=0, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
 idFrame.grid(column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
 tickFrame.grid(column=0, row=10, columnspan=12, rowspan=5, sticky=(N, W, E, S))
 
-root.columnconfigure(0, weight=1)
-
-infoFrame.columnconfigure(0, weight=1)
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
 shows = shows.Shows()
 psas = psa.PSA()
