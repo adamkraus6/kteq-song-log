@@ -9,28 +9,45 @@ def logSong(*args):
 	artist   = songArtist.get()
 	composer = songComposer.get()
 	show     = showName.get()
-	time     = datetime.datetime.now()
+	now      = datetime.datetime.now()
 
-	with open('songs.csv', 'a', newline='') as songlog:
+	filename = 'bmi_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
+	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
+	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
+
+	with open(filename, 'a', newline='') as songlog:
 		songwriter = csv.writer(songlog, delimiter=',')
-		songwriter.writerow([show, song, artist, composer, time])
+		songwriter.writerow([date, time, song, artist, composer, show])
 
 def logID():
 	show = showName.get()
-	time = datetime.datetime.now()
+	now = datetime.datetime.now()
 	
-	with open('id.csv', 'a', newline='') as idlog:
+	filename = 'bmi_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
+	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
+	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
+
+	with open(filename, 'a', newline='') as idlog:
 		idwriter = csv.writer(idlog, delimiter=',')
-		idwriter.writerow([show, time])
+		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
 
 def logPSA(*args):
 	show = showName.get()
 	psa  = psaName.get()
-	time = datetime.datetime.now()
+	now = datetime.datetime.now()
+	
+	filename  = 'bmi_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
+	filename2 = 'psa_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
+	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
+	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
 
-	with open('psa.csv', 'a', newline='') as psalog:
+	with open(filename, 'a', newline='') as psalog:
+		psawriter = csv.writer(psalog, delimeter=',')
+		psawriter.writerow([date, time, psa, 'PSA', '', show])
+
+	with open(filename2, 'a', newline='') as psalog:
 		psawriter = csv.writer(psalog, delimiter=',')
-		psawriter.writerow([show, psa, time])
+		psawriter.writerow([date, time, psa])
 
 
 #create the window and title it
