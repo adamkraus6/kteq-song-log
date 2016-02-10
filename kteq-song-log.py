@@ -9,6 +9,7 @@ from PIL import ImageTk, Image
 #imports
 import shows
 import psa
+import instructions
 
 LOG_ID   = 0
 LOG_SONG = 1
@@ -195,6 +196,7 @@ logoFrame.grid(column=12, row=0,  columnspan=6, rowspan=10, sticky=(N, W, E, S))
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
 shows = shows.Shows()
 psas = psa.PSA()
+instructions = instructions.Instructions()
 
 #Create the variables
 showName = StringVar()
@@ -217,9 +219,9 @@ songComposer_entry = ttk.Entry(songFrame, width=7, textvariable=songComposer)
 img_logo = ImageTk.PhotoImage(file="img/kteq-logo.jpg")
 
 #Place Text Boxes
-songComposer_entry.grid(column=3, row=3, columnspan=3, sticky=(W, E))
-songArtist_entry.grid(column=3, row=2, columnspan=3, sticky=(W, E))
-songName_entry.grid(column=3, row=1, columnspan=3, sticky=(W, E))
+songComposer_entry.grid(column=3, row=3, columnspan=6, sticky=(W, E))
+songArtist_entry.grid(column=3, row=2, columnspan=6, sticky=(W, E))
+songName_entry.grid(column=3, row=1, columnspan=6, sticky=(W, E))
 
 
 #Create drop downs
@@ -227,7 +229,7 @@ showNameList = OptionMenu(infoFrame, showName, *shows.list)
 psaNameList = OptionMenu(psaFrame, psaName, *psas.list)
 
 #Place Drop Downs
-showNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
+showNameList.grid(column=3, row=1, sticky=(W, E))
 psaNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 
 #Create buttons
@@ -252,6 +254,13 @@ songName_lbl     = ttk.Label(songFrame, text="Song Name:")
 songArtist_lbl   = ttk.Label(songFrame, text="Song Artist:")
 songComposer_lbl = ttk.Label(songFrame, text="Song Composer:")
 psa_lbl          = ttk.Label(psaFrame,  text="PSA Title:")
+
+#Create instructions labels
+howTo_Show_lbl = ttk.Label(infoFrame, text=instructions.show, wraplength=400)
+howTo_Song_lbl = ttk.Label(songFrame, text=instructions.song, wraplength=400)
+howTo_ID_lbl   = ttk.Label(idFrame,   text=instructions.id  , wraplength=400)
+howTo_PSA_lbl  = ttk.Label(psaFrame,  text=instructions.psa , wraplength=400)
+
 
 #Labels for ticker
 prevSong1date_lbl     = ttk.Label(tickFrame, padding=6, text="")
@@ -290,6 +299,12 @@ songName_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
 songArtist_lbl.grid(column=0, row=2, columnspan=3, sticky=W)
 songComposer_lbl.grid(column=0, row=3, columnspan=3, sticky=W)
 psa_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
+
+#Place Instructions
+howTo_Show_lbl.grid(column=0, row=0, columnspan=5, sticky=W)
+howTo_Song_lbl.grid(column=0, row=0, columnspan=5, sticky=W)
+howTo_ID_lbl.grid(  column=0, row=0, columnspan=5, sticky=W)
+howTo_PSA_lbl.grid( column=0, row=0, columnspan=5, sticky=W)
 
 #Place ticker Labels
 prevSong1date_lbl.grid(    column=0,  row=0, columnspan=2, sticky=(W, E))
