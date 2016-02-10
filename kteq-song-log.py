@@ -32,6 +32,14 @@ def logSong(*args):
 	songArtist_entry.delete(0, 'end')
 	songComposer_entry.delete(0, 'end')
 
+	
+	prevSong5_lbl.config(text=prevSong4_lbl.cget("text"))
+	prevSong4_lbl.config(text=prevSong3_lbl.cget("text"))
+	prevSong3_lbl.config(text=prevSong2_lbl.cget("text"))
+	prevSong2_lbl.config(text=prevSong1_lbl.cget("text"))
+	prevSong1_lbl.config(text=[date.rjust(10),"|", time.rjust(5),"|", song, '|', artist, '|', composer, '|', show])
+	
+
 def logID():
 	show = showName.get()
 	now = datetime.datetime.now()
@@ -43,6 +51,13 @@ def logID():
 	with open(filename, 'a', newline='') as idlog:
 		idwriter = csv.writer(idlog, delimiter=',')
 		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
+	
+	prevSong5_lbl.config(text=prevSong4_lbl.cget("text"))
+	prevSong4_lbl.config(text=prevSong3_lbl.cget("text"))
+	prevSong3_lbl.config(text=prevSong2_lbl.cget("text"))
+	prevSong2_lbl.config(text=prevSong1_lbl.cget("text"))
+	prevSong1_lbl.config(text=[date.rjust(10),"|", time.rjust(5),"|", 'STATION TAG',  '|','KTEQ', '|', '', '|', show])
+
 	#log to nowPlaying.txt
 	nowPlaying()
 
@@ -66,6 +81,12 @@ def logPSA(*args):
 	#log to nowPlaying.txt
 	nowPlaying()
 
+	prevSong5_lbl.config(text=prevSong4_lbl.cget("text"))
+	prevSong4_lbl.config(text=prevSong3_lbl.cget("text"))
+	prevSong3_lbl.config(text=prevSong2_lbl.cget("text"))
+	prevSong2_lbl.config(text=prevSong1_lbl.cget("text"))
+	prevSong1_lbl.config(text=[date.rjust(10),"|", time.rjust(5),"|", psa, '|', 'PSA', '|', '', '|', show])
+
 def nowPlaying():
 	#Write to a file what song is currently playing (or what have you)
 	filename = 'nowPlaying.txt'
@@ -85,22 +106,19 @@ def nowPlaying():
 root = Tk()
 root.title("KTEQ 91.3FM SONG AND PSA LOG")
 
-#create the info frame
-infoFrame = ttk.Frame(root, borderwidth=5, relief="sunken", width=300, height=250)
+#create the frames
+infoFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
+songFrame = ttk.Frame(root,  width=300, height=250,borderwidth=5, relief="sunken")
+psaFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
+idFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
+tickFrame = ttk.Frame(root, width=600, height=250, borderwidth=5, relief="sunken")
+
+#place frames
 infoFrame.grid(column=0, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-
-#create the song frame
-songFrame = ttk.Frame(root, borderwidth=5, relief="sunken", width=300, height=250)
 songFrame.grid(column=6, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-
-#create the PSA frame
-psaFrame = ttk.Frame(root, borderwidth=5, relief="sunken", width=300, height=250)
 psaFrame.grid(column=0, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-
-#create the ID frame
-idFrame = ttk.Frame(root, borderwidth=5, relief="sunken", width=400, height=250)
 idFrame.grid(column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-
+tickFrame.grid(column=0, row=10, columnspan=12, rowspan=5, sticky=(N, W, E, S))
 
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
 shows = shows.Shows()
@@ -157,11 +175,24 @@ songArtist_lbl   = ttk.Label(songFrame, text="Song Artist:")
 songComposer_lbl = ttk.Label(songFrame, text="Song Composer:")
 psa_lbl          = ttk.Label(psaFrame,  text="PSA Title:")
 
+#Labels for ticker
+prevSong1_lbl = ttk.Label(tickFrame, text="song 1 ;)")
+prevSong2_lbl = ttk.Label(tickFrame, text="song 2 ;)")
+prevSong3_lbl = ttk.Label(tickFrame, text="song 3 ;)")
+prevSong4_lbl = ttk.Label(tickFrame, text="song 4 ;)")
+prevSong5_lbl = ttk.Label(tickFrame, text="song 5 ;)")
+
 #Place labels
 songName_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
 songArtist_lbl.grid(column=0, row=2, columnspan=3, sticky=W)
 songComposer_lbl.grid(column=0, row=3, columnspan=3, sticky=W)
 psa_lbl.grid(column=0, row=1, columnspan=3, sticky=W)
 
+#Place ticker Labels
+prevSong1_lbl.grid(column=0, row=0, columnspan=12, sticky=(W, E))
+prevSong2_lbl.grid(column=0, row=1, columnspan=12, sticky=(W, E))
+prevSong3_lbl.grid(column=0, row=2, columnspan=12, sticky=(W, E))
+prevSong4_lbl.grid(column=0, row=3, columnspan=12, sticky=(W, E))
+prevSong5_lbl.grid(column=0, row=4, columnspan=12, sticky=(W, E))
 
 root.mainloop()
