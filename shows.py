@@ -111,7 +111,7 @@ class Shows(object):
         print(show)
 
   def printlistsSchedule(self):
-    print("list's Schedule: ")
+    print("Today's Schedule: ")
     self.dayOfWeek()
     for show in self.list:
       print(show)
