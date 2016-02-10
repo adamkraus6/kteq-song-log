@@ -27,48 +27,13 @@ def logSong(*args):
 	#log to nowPlaying.txt
 	nowPlaying()
 
+	#update ticker
+	updateTicker()
+
 	#clear everything for next submission
 	songName_entry.delete(0, 'end')
 	songArtist_entry.delete(0, 'end')
 	songComposer_entry.delete(0, 'end')
-
-	
-	prevSong5date_lbl.config(    text=prevSong4date_lbl.cget("text"))
-	prevSong5time_lbl.config(    text=prevSong4time_lbl.cget("text"))
-	prevSong5title_lbl.config(   text=prevSong4title_lbl.cget("text"))
-	prevSong5artist_lbl.config(  text=prevSong4artist_lbl.cget("text"))
-	prevSong5composer_lbl.config(text=prevSong4composer_lbl.cget("text"))
-	prevSong5show_lbl.config(    text=prevSong4show_lbl.cget("text"))
-
-	prevSong4date_lbl.config(    text=prevSong3date_lbl.cget("text"))
-	prevSong4time_lbl.config(    text=prevSong3time_lbl.cget("text"))
-	prevSong4title_lbl.config(   text=prevSong3title_lbl.cget("text"))
-	prevSong4artist_lbl.config(  text=prevSong3artist_lbl.cget("text"))
-	prevSong4composer_lbl.config(text=prevSong3composer_lbl.cget("text"))
-	prevSong4show_lbl.config(    text=prevSong3show_lbl.cget("text"))
-
-	prevSong3date_lbl.config(    text=prevSong2date_lbl.cget("text"))
-	prevSong3time_lbl.config(    text=prevSong2time_lbl.cget("text"))
-	prevSong3title_lbl.config(   text=prevSong2title_lbl.cget("text"))
-	prevSong3artist_lbl.config(  text=prevSong2artist_lbl.cget("text"))
-	prevSong3composer_lbl.config(text=prevSong2composer_lbl.cget("text"))
-	prevSong3show_lbl.config(    text=prevSong2show_lbl.cget("text"))
-
-	prevSong2date_lbl.config(    text=prevSong1date_lbl.cget("text"))
-	prevSong2time_lbl.config(    text=prevSong1time_lbl.cget("text"))
-	prevSong2title_lbl.config(   text=prevSong1title_lbl.cget("text"))
-	prevSong2artist_lbl.config(  text=prevSong1artist_lbl.cget("text"))
-	prevSong2composer_lbl.config(text=prevSong1composer_lbl.cget("text"))
-	prevSong2show_lbl.config(    text=prevSong1show_lbl.cget("text"))
-
-	prevSong1date_lbl.config(    text=date)
-	prevSong1time_lbl.config(    text=time)
-	prevSong1title_lbl.config(   text=song)
-	prevSong1artist_lbl.config(  text=artist)
-	prevSong1composer_lbl.config(text=composer)
-	prevSong1show_lbl.config(    text=show)
-
-	
 
 def logID():
 	show = showName.get()
@@ -82,43 +47,12 @@ def logID():
 		idwriter = csv.writer(idlog, delimiter=',')
 		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
 	
-	prevSong5date_lbl.config(    text=prevSong4date_lbl.cget("text"))
-	prevSong5time_lbl.config(    text=prevSong4time_lbl.cget("text"))
-	prevSong5title_lbl.config(   text=prevSong4title_lbl.cget("text"))
-	prevSong5artist_lbl.config(  text=prevSong4artist_lbl.cget("text"))
-	prevSong5composer_lbl.config(text=prevSong4composer_lbl.cget("text"))
-	prevSong5show_lbl.config(    text=prevSong4show_lbl.cget("text"))
-
-	prevSong4date_lbl.config(    text=prevSong3date_lbl.cget("text"))
-	prevSong4time_lbl.config(    text=prevSong3time_lbl.cget("text"))
-	prevSong4title_lbl.config(   text=prevSong3title_lbl.cget("text"))
-	prevSong4artist_lbl.config(  text=prevSong3artist_lbl.cget("text"))
-	prevSong4composer_lbl.config(text=prevSong3composer_lbl.cget("text"))
-	prevSong4show_lbl.config(    text=prevSong3show_lbl.cget("text"))
-
-	prevSong3date_lbl.config(    text=prevSong2date_lbl.cget("text"))
-	prevSong3time_lbl.config(    text=prevSong2time_lbl.cget("text"))
-	prevSong3title_lbl.config(   text=prevSong2title_lbl.cget("text"))
-	prevSong3artist_lbl.config(  text=prevSong2artist_lbl.cget("text"))
-	prevSong3composer_lbl.config(text=prevSong2composer_lbl.cget("text"))
-	prevSong3show_lbl.config(    text=prevSong2show_lbl.cget("text"))
-
-	prevSong2date_lbl.config(    text=prevSong1date_lbl.cget("text"))
-	prevSong2time_lbl.config(    text=prevSong1time_lbl.cget("text"))
-	prevSong2title_lbl.config(   text=prevSong1title_lbl.cget("text"))
-	prevSong2artist_lbl.config(  text=prevSong1artist_lbl.cget("text"))
-	prevSong2composer_lbl.config(text=prevSong1composer_lbl.cget("text"))
-	prevSong2show_lbl.config(    text=prevSong1show_lbl.cget("text"))
-
-	prevSong1date_lbl.config(    text=date)
-	prevSong1time_lbl.config(    text=time)
-	prevSong1title_lbl.config(   text="STATION TAG")
-	prevSong1artist_lbl.config(  text="KTEQ")
-	prevSong1composer_lbl.config(text="")
-	prevSong1show_lbl.config(    text=show)
-
 	#log to nowPlaying.txt
 	nowPlaying()
+
+	#update ticker
+	updateTicker()
+
 
 def logPSA(*args):
 	show = showName.get()
@@ -137,9 +71,22 @@ def logPSA(*args):
 	with open(filename2, 'a', newline='') as psalog:
 		psawriter = csv.writer(psalog, delimiter=',')
 		psawriter.writerow([date, time, psa])
+	
 	#log to nowPlaying.txt
 	nowPlaying()
 
+	#update ticker
+	updateTicker()
+
+def updateTicker(source=LOG_ID):
+	
+	song     = songName.get()
+	artist   = songArtist.get()
+	composer = songComposer.get()
+	show     = showName.get()
+	now      = datetime.datetime.now()
+	psa      = psaName.get()
+	
 	prevSong5date_lbl.config(    text=prevSong4date_lbl.cget("text"))
 	prevSong5time_lbl.config(    text=prevSong4time_lbl.cget("text"))
 	prevSong5title_lbl.config(   text=prevSong4title_lbl.cget("text"))
@@ -168,13 +115,28 @@ def logPSA(*args):
 	prevSong2composer_lbl.config(text=prevSong1composer_lbl.cget("text"))
 	prevSong2show_lbl.config(    text=prevSong1show_lbl.cget("text"))
 
-	prevSong1date_lbl.config(    text=date)
-	prevSong1time_lbl.config(    text=time)
-	prevSong1title_lbl.config(   text=psa)
-	prevSong1artist_lbl.config(  text="PSA")
-	prevSong1composer_lbl.config(text="")
-	prevSong1show_lbl.config(    text=show)
-
+	if(source==LOG_ID)
+		prevSong1date_lbl.config(    text=date)
+		prevSong1time_lbl.config(    text=time)
+		prevSong1title_lbl.config(   text="STATION TAG")
+		prevSong1artist_lbl.config(  text="KTEQ")
+		prevSong1composer_lbl.config(text="")
+		prevSong1show_lbl.config(    text=show)
+	elif(source==LOG_SONG)
+		prevSong1date_lbl.config(    text=date)
+		prevSong1time_lbl.config(    text=time)
+		prevSong1title_lbl.config(   text=song)
+		prevSong1artist_lbl.config(  text=artist)
+		prevSong1composer_lbl.config(text=composer)
+		prevSong1show_lbl.config(    text=show)
+	elif(source==LOG_PSA)
+		prevSong1date_lbl.config(    text=date)
+		prevSong1time_lbl.config(    text=time)
+		prevSong1title_lbl.config(   text=psa)
+		prevSong1artist_lbl.config(  text="PSA")
+		prevSong1composer_lbl.config(text="")
+		prevSong1show_lbl.config(    text=show)
+	
 def nowPlaying():
 	#Write to a file what song is currently playing (or what have you)
 	filename = 'nowPlaying.txt'
@@ -195,17 +157,17 @@ root = Tk()
 root.title("KTEQ 91.3FM SONG AND PSA LOG")
 
 #create the frames
-infoFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
-songFrame = ttk.Frame(root,  width=300, height=250,borderwidth=5, relief="sunken")
-psaFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
-idFrame = ttk.Frame(root, width=300, height=250, borderwidth=5, relief="sunken")
-tickFrame = ttk.Frame(root, width=600, height=250, borderwidth=5, relief="sunken")
+infoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
+songFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
+psaFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
+idFrame   = ttk.Frame(root, borderwidth=5, relief="sunken")
+tickFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 
 #place frames
 infoFrame.grid(column=0, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-songFrame.grid(column=6, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-psaFrame.grid(column=0, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
-idFrame.grid(column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
+songFrame.grid(column=0, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
+psaFrame.grid( column=6, row=5, columnspan=6, rowspan=5, sticky=(N, W, E, S))
+idFrame.grid(  column=6, row=0, columnspan=6, rowspan=5, sticky=(N, W, E, S))
 tickFrame.grid(column=0, row=10, columnspan=12, rowspan=5, sticky=(N, W, E, S))
 
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
