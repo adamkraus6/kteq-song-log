@@ -19,6 +19,10 @@ def logSong(*args):
 		songwriter = csv.writer(songlog, delimiter=',')
 		songwriter.writerow([date, time, song, artist, composer, show])
 
+	songName_entry.delete(0, 'end')
+	songArtist_entry.delete(0, 'end')
+	songComposer_entry.delete(0, 'end')
+
 def logID():
 	show = showName.get()
 	now = datetime.datetime.now()
@@ -84,8 +88,8 @@ songComposer = StringVar()
 
 
 #Create text boxes
-songName_entry = ttk.Entry(songFrame, width=7, textvariable=songName)
-songArtist_entry = ttk.Entry(songFrame, width=7, textvariable=songArtist)
+songName_entry     = ttk.Entry(songFrame, width=7, textvariable=songName)
+songArtist_entry   = ttk.Entry(songFrame, width=7, textvariable=songArtist)
 songComposer_entry = ttk.Entry(songFrame, width=7, textvariable=songComposer)
 
 
