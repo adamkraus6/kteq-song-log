@@ -120,21 +120,21 @@ def updateTicker(source=LOG_ID):
 	prevSong2show_lbl.config(    text=prevSong1show_lbl.cget("text"))
 
 
-	if(source==LOG_ID)
+	if(source==LOG_ID):
 		prevSong1date_lbl.config(    text=date)
 		prevSong1time_lbl.config(    text=time)
 		prevSong1title_lbl.config(   text="STATION TAG")
 		prevSong1artist_lbl.config(  text="KTEQ")
 		prevSong1composer_lbl.config(text="")
 		prevSong1show_lbl.config(    text=show)
-	elif(source==LOG_SONG)
+	elif(source==LOG_SONG):
 		prevSong1date_lbl.config(    text=date)
 		prevSong1time_lbl.config(    text=time)
 		prevSong1title_lbl.config(   text=song)
 		prevSong1artist_lbl.config(  text=artist)
 		prevSong1composer_lbl.config(text=composer)
 		prevSong1show_lbl.config(    text=show)
-	elif(source==LOG_PSA)
+	elif(source==LOG_PSA):
 		prevSong1date_lbl.config(    text=date)
 		prevSong1time_lbl.config(    text=time)
 		prevSong1title_lbl.config(   text=psa)
