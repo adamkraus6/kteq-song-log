@@ -9,6 +9,10 @@ import datetime
 import shows
 import psa
 
+LOG_ID   = 0
+LOG_SONG = 1
+LOG_PSA  = 2
+
 def logSong(*args):
 	song     = songName.get()
 	artist   = songArtist.get()
@@ -25,7 +29,7 @@ def logSong(*args):
 		songwriter.writerow([date, time, song, artist, composer, show])
 
 	#log to nowPlaying.txt
-	nowPlaying()
+	nowPlaying(source=LOG_SONG)
 
 	#clear everything for next submission
 	songName_entry.delete(0, 'end')
@@ -118,7 +122,7 @@ def logID():
 	prevSong1show_lbl.config(    text=show)
 
 	#log to nowPlaying.txt
-	nowPlaying()
+	nowPlaying(source=LOG_ID)
 
 def logPSA(*args):
 	show = showName.get()
@@ -138,7 +142,7 @@ def logPSA(*args):
 		psawriter = csv.writer(psalog, delimiter=',')
 		psawriter.writerow([date, time, psa])
 	#log to nowPlaying.txt
-	nowPlaying()
+	nowPlaying(source=LOG_PSA)
 
 	prevSong5date_lbl.config(    text=prevSong4date_lbl.cget("text"))
 	prevSong5time_lbl.config(    text=prevSong4time_lbl.cget("text"))
@@ -175,19 +179,29 @@ def logPSA(*args):
 	prevSong1composer_lbl.config(text="")
 	prevSong1show_lbl.config(    text=show)
 
-def nowPlaying():
+def nowPlaying( source=LOG_ID ):
 	#Write to a file what song is currently playing (or what have you)
 	filename = 'nowPlaying.txt'
 	song     = songName.get()
 	artist   = songArtist.get()
 	psa      = psaName.get()
 	nowPlay  = open(filename, 'w')
-	if(artist=='' and psa!=''):
-		line = psa + ' - Public Service Announcement'
-	elif(artist=='' and song==''):
-		line = "KTEQ FM 91.3 Rapid City, South Dakota"
-	else:
-		line = song + ' by ' + artist
+	default = "KTEQ FM 91.3 Rapid City, South Dakota"
+	if(source==LOG_ID):
+		#Station ID
+		line = default
+	elif(source==LOG_SONG):
+		#SONG
+		if(song!='' and artist!=''):
+			line = song + ' by ' + artist
+		else:
+			line = default
+	elif(source==LOG_PSA):
+		#PSA
+		if(psa!=''):
+			line = psa + ' - Public Service Announcement'
+		else:
+			line = default
 	nowPlay.write(line)
 
 #create the window and title it
