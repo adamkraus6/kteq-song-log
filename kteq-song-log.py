@@ -6,7 +6,7 @@ import csv
 import datetime
 
 #imports
-import show
+import shows
 import psa
 
 def logSong(*args):
