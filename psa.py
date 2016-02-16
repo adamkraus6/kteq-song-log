@@ -8,6 +8,7 @@ class PSA(object):
 
   def __init__(self):
     self.list = []
+    self.list.append("1 in 5 Kids")
     self.list.append("Adopt")
     self.list.append("Best of Show")
     self.list.append("Be Vocal")
