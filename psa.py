@@ -8,18 +8,17 @@ class PSA(object):
 
   def __init__(self):
     self.list = []
-    self.list.append("1 in 5 Kids")
-    self.list.append("Adopt")
-    self.list.append("Best of Show")
-    self.list.append("Be Vocal")
-    self.list.append("Bullying")
-    self.list.append("Buzzed Driving")
-    self.list.append("Chance")    
-    self.list.append("Child Hunger")
-    self.list.append("Commune")
-    self.list.append("Funky Chicken ESP")
-    self.list.append("Stuntman")
-
+    self.list.append("Autism Awareness")
+    self.list.append("Domestic Violence Prevention")
+    self.list.append("Fatherhood: Kids On Dads")
+    self.list.append("Underage Drinking Pool Party")    
+    self.list.append("Hunger Prevention: So Much Food")
+    self.list.append("Pre-Diabetes")
+    self.list.append("Recycling")
+    self.list.append("Sexual Assault Prevention")
+    self.list.append("Stroke Awareness: Party 60")
+    self.list.append("Texting And Driving")
+    self.list.sort()
 
 if __name__ == '__main__':
   print("Current PSAs in Rotation: ")
