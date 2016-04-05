@@ -70,6 +70,7 @@ class Shows(object):
     self.sat.append("Prayers to the Transparent Kaleidoscope")
     #self.list.append("~~~~~*  SUNDAY   *~~~~~")
     self.sun.append("Ramblings On Music")
+    self.sun.append("The Rough Draft")
     self.sun.append("The Sparrow")
 
     self.schedule.append(self.mon)
