@@ -8,16 +8,16 @@ class PSA(object):
 
   def __init__(self):
     self.list = []
-    self.list.append("Autism Awareness")
-    self.list.append("Domestic Violence Prevention")
-    self.list.append("Fatherhood: Kids On Dads")
-    self.list.append("Underage Drinking Pool Party")    
-    self.list.append("Hunger Prevention: So Much Food")
-    self.list.append("Pre-Diabetes")
-    self.list.append("Recycling")
-    self.list.append("Sexual Assault Prevention")
-    self.list.append("Stroke Awareness: Party 60")
-    self.list.append("Texting And Driving")
+    self.list.append("Adoption from Foster Care - Breakup 60")
+    self.list.append("Buzzed Driving Prevention - Drive Around 30")
+    self.list.append("Child Passenger Safety - Let Me Ask You 30")
+    self.list.append("Community Engagement - The Difference Is You 60")    
+    self.list.append("Emergency Preparedness - Make a Plan 30")
+    self.list.append("Financial Literacy - Rockstar 60")
+    self.list.append("Food Safety Education - Mosh 30")
+    self.list.append("Supporting Minority Education - Opportunity-Alisha 30")
+    self.list.append("Teacher Recruitment - Growing Up 30")
+    self.list.append("Women's Heart Disease - Breaking News 30")
     self.list.sort()
 
 if __name__ == '__main__':
