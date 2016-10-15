@@ -62,7 +62,7 @@ class Shows(object):
     #self.list.append("~~~~~*  FRIDAY   *~~~~~")
     self.fri.append("Ckaos")
     self.fri.append("Bear Bacon")
-    self.fri.append("Skeletons In The Closet")
+    self.fri.append("Skeletons Out Of The Closet")
     self.fri.append("The B-Side")
     self.fri.append("Broken Record")
     #self.list.append("~~~~~* SATURDAY  *~~~~~")
