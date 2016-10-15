@@ -64,7 +64,7 @@ class Shows(object):
     self.fri.append("Bear Bacon")
     self.fri.append("Skeletons In The Closet")
     self.fri.append("The B-Side")
-    self.fri.append("Three Lost Causes")
+    self.fri.append("Broken Record")
     #self.list.append("~~~~~* SATURDAY  *~~~~~")
     self.sat.append("Janitors of the Apocalypse")        
     self.sat.append("Houston, We Have A Problem")
