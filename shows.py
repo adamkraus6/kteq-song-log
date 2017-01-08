@@ -40,6 +40,7 @@ class Shows(object):
     self.sun.append("Wild Woman Radio")
     self.sun.append("Bro Jam")
     self.sun.append("The Rough Draft")
+    self.sun.append("Tralfamadorian Review")
     self.sun.append("The Sparrow")
     #self.list.append("~~~~~*  MONDAY   *~~~~~")
     self.mon.append("Esoteric Bluegrass")
