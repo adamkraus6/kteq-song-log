@@ -162,7 +162,7 @@ def nowPlaying( source=LOG_ID ):
 	elif(source==LOG_SONG):
 		#SONG
 		if(song!='' and artist!=''):
-			line = song + ' by ' + artist
+			line = song + ' __by__ ' + artist
 		else:
 			line = default
 	elif(source==LOG_PSA):

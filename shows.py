@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import datetime
+import xml.etree.ElementTree as ET
 
 # ===========================================================================
 # Show list Class
@@ -27,6 +28,7 @@ class Shows(object):
     self.list = []
     self.schedule = []
 
+    # add Free Play/Unscripted to all dates
     self.mon.append("Free Play/Unscripted")
     self.tue.append("Free Play/Unscripted")
     self.wed.append("Free Play/Unscripted")
@@ -35,43 +37,18 @@ class Shows(object):
     self.sat.append("Free Play/Unscripted")
     self.sun.append("Free Play/Unscripted")
 
+    # Gather all other shows from xml file
+    tree = ET.parse('shows.xml')
+    root = tree.getroot()
+    for date in root:
+        for show in date.findall('show'):
+            self.addShow(show.attrib['name'], date.attrib['name'])
+            # print("\t", show.attrib['name'])
+            for aka in show.findall('aka'):
+                self.addShow(aka.text, date.attrib['name'])
+                # print("\t", aka.text)
 
-    #self.list.append("~~~~~*  MONDAY   *~~~~~")
-    self.mon.append("TBD")
-    self.mon.append("Esoteric Bluegrass")
-    self.mon.append("Chill Vibes")
-    self.mon.append("The Waiting Room")
-    self.mon.append("Monday Night Jazz Reflections")
-    #self.list.append("~~~~~*  TUESDAY  *~~~~~")
-    self.tue.append("Whatever I Want")
-    self.tue.append("Twisted Love/The Recovery")
-    self.tue.append("The Budgie Smugglers")
-    self.tue.append("Pop Culture Academy")
-    self.tue.append("Purple Sweet Potato")
-    #self.list.append("~~~~~* WEDNESDAY *~~~~~")
-    self.wed.append("Deep Wave")
-    self.wed.append("Ethereal Machinations")
-    #self.list.append("~~~~~* THURSDAY  *~~~~~")
-    self.thu.append("Left of The Dial")
-    self.thu.append("House of Funk")
-    self.thu.append("Sensible Radio")
-    self.thu.append("On The Roof w/ Rusty & Roo")
-    self.thu.append("The J Waylon Programme")
-    #self.list.append("~~~~~*  FRIDAY   *~~~~~")
-    self.fri.append("Bear Bacon")
-    self.fri.append("The Jambulance")
-    self.fri.append("The B-Side")
-    self.fri.append("Three Lost Causes")
-    #self.list.append("~~~~~* SATURDAY  *~~~~~")
-    self.sat.append("The Progressive")
-    self.sat.append("Janitors of the Apocalypse")
-    self.sat.append("The Couch of the Blooming Youths")
-    self.sat.append("Under the Tundra with Jason Ader")
-    self.sat.append("Prayers to the Transparent Kaleidoscope")
-    #self.list.append("~~~~~*  SUNDAY   *~~~~~")
-    self.sun.append("Ramblings On Music")
-    self.sun.append("The Sparrow")
-
+    # combine everything to full list
     self.schedule.append(self.mon)
     self.schedule.append(self.tue)
     self.schedule.append(self.wed)
@@ -81,6 +58,23 @@ class Shows(object):
     self.schedule.append(self.sun)
 
     self.dayOfWeek()
+
+  def addShow(self, show, date):
+    if date == "Monday":
+        self.mon.append(show)
+    elif date == "Tuesday":
+        self.tue.append(show)
+    elif date == "Wednesday":
+        self.wed.append(show)
+    elif date == "Thursday":
+        self.thu.append(show)
+    elif date == "Friday":
+        self.fri.append(show)
+    elif date == "Saturday":
+        self.sat.append(show)
+    elif date == "Sunday":
+        self.sun.append(show)
+
 
   def dayOfWeek(self):
   	#clear list

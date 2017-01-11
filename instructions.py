@@ -14,7 +14,7 @@ class Instructions(object):
 
     self.id = 'At the top of every hour, click the Log ID button. Make '
     self.id = self.id + 'sure you also state our station tag on air! '
-    self.id = self.id + '(KTEQ FM 91.3 Rapid City)' 
+    self.id = self.id + '(KTEQ FM Rapid City)' 
 
     self.song = 'Enter Song Name, Artist, and Composer (if applicable) '
     self.song = self.song + 'for EVERY song you play. Try to update this '
