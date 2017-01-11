@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import datetime
+import xml.etree.ElementTree as ET
 
 # ===========================================================================
 # Show list Class
@@ -27,6 +28,7 @@ class Shows(object):
     self.list = []
     self.schedule = []
 
+    # add Free Play/Unscripted to all dates
     self.mon.append("Free Play/Unscripted")
     self.tue.append("Free Play/Unscripted")
     self.wed.append("Free Play/Unscripted")
@@ -35,42 +37,18 @@ class Shows(object):
     self.sat.append("Free Play/Unscripted")
     self.sun.append("Free Play/Unscripted")
 
-    #self.list.append("~~~~~*  SUNDAY   *~~~~~")
-    self.sun.append("White Noise")
-    self.sun.append("Wild Woman Radio")
-    self.sun.append("Bro Jam")
-    self.sun.append("The Rough Draft")
-    self.sun.append("Tralfamadorian Review")
-    self.sun.append("The Sparrow")
-    #self.list.append("~~~~~*  MONDAY   *~~~~~")
-    self.mon.append("Esoteric Bluegrass")
-    self.mon.append("The Budgie Smugglers")
-    self.mon.append("The Throwback Zone")
-    self.mon.append("Monday Night Jazz Reflections")
-    #self.list.append("~~~~~*  TUESDAY  *~~~~~")
-    self.tue.append("The Jambulance")
-    self.tue.append("Twisted Love")
-    self.tue.append("Pop Culture Academy")
-    #self.list.append("~~~~~* WEDNESDAY *~~~~~")
-    self.wed.append("Purple Sweet Potato")
-    self.wed.append("The Recovery")
-    #self.list.append("~~~~~* THURSDAY  *~~~~~")
-    self.thu.append("Left of The Dial")
-    self.thu.append("House of Funk")
-    self.thu.append("CCCurtain Ratsss")
-    self.thu.append("House Blend")
-    #self.list.append("~~~~~*  FRIDAY   *~~~~~")
-    self.fri.append("Ckaos")
-    self.fri.append("Bear Bacon")
-    self.fri.append("Skeletons Out Of The Closet")
-    self.fri.append("The B-Side")
-    self.fri.append("Broken Record")
-    #self.list.append("~~~~~* SATURDAY  *~~~~~")
-    self.sat.append("Janitors of the Apocalypse")        
-    self.sat.append("Houston, We Have A Problem")
-    self.sat.append("Under the Tundra with Jason Ader")
-    self.sat.append("Prayers to the Transparent Kaleidoscope")
+    # Gather all other shows from xml file
+    tree = ET.parse('shows.xml')
+    root = tree.getroot()
+    for date in root:
+        for show in date.findall('show'):
+            self.addShow(show.attrib['name'], date.attrib['name'])
+            # print("\t", show.attrib['name'])
+            for aka in show.findall('aka'):
+                self.addShow(aka.text, date.attrib['name'])
+                # print("\t", aka.text)
 
+    # combine everything to full list
     self.schedule.append(self.mon)
     self.schedule.append(self.tue)
     self.schedule.append(self.wed)
@@ -80,6 +58,23 @@ class Shows(object):
     self.schedule.append(self.sun)
 
     self.dayOfWeek()
+
+  def addShow(self, show, date):
+    if date == "Monday":
+        self.mon.append(show)
+    elif date == "Tuesday":
+        self.tue.append(show)
+    elif date == "Wednesday":
+        self.wed.append(show)
+    elif date == "Thursday":
+        self.thu.append(show)
+    elif date == "Friday":
+        self.fri.append(show)
+    elif date == "Saturday":
+        self.sat.append(show)
+    elif date == "Sunday":
+        self.sun.append(show)
+
 
   def dayOfWeek(self):
   	#clear list

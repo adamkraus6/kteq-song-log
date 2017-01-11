@@ -187,7 +187,7 @@ def refreshShowList():
 #create the window and title it
 root = Tk()
 root.title("KTEQ 91.3FM SONG AND PSA LOG")
-
+root.resizable(FALSE,FALSE)
 #create the frames
 infoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
 songFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
