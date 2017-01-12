@@ -42,11 +42,13 @@ class Shows(object):
     root = tree.getroot()
     for date in root:
         for show in date.findall('show'):
-            self.addShow(show.attrib['name'], date.attrib['name'])
-            # print("\t", show.attrib['name'])
-            for aka in show.findall('aka'):
-                self.addShow(aka.text, date.attrib['name'])
-                # print("\t", aka.text)
+            for status in show.findall('status'):
+                if status.text.upper() == "ACTIVE":
+                    self.addShow(show.attrib['name'], date.attrib['name'])
+                    # print("\t", show.attrib['name'])
+                    for aka in show.findall('aka'):
+                        self.addShow(aka.text, date.attrib['name'])
+                        # print("\t", aka.text)
 
     # combine everything to full list
     self.schedule.append(self.mon)
