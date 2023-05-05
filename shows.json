@@ -1,0 +1,256 @@
+{
+    "shows": [
+        {
+            "id": "000000",
+            "show name": "The Throwback Zone",
+            "status": "Active",
+            "show date": "Monday",
+            "start": "18:00",
+            "end": "21:00",
+            "length": "3",
+            "short": "None",
+            "description": "Enjoy three hours of some of the best music out there in the Throwback Zone. Join DJ Retro every Monday from 6-9 pm for some of the best music from 1976 to 1991, with genres ranging from disco and new wave to Latin freestyle and college rock...and don't worry, DJ Retro has a few surprises in store to keep things FUN!",
+            "djs": [
+                {
+                    "dj name": "Matt Smith",
+                    "dj email": "mjsmith0827@gmail.com",
+                    "dj type": "community"
+                }
+            ]
+        },
+        {
+            "id": "000001",
+            "show name": "Monday Night Jazz Reflections",
+            "status": "Active",
+            "show date": "Monday",
+            "start": "21:00",
+            "end": "00:00",
+            "length": "3",
+            "short": "None",
+            "description": "Your source for Jazz at KTEQ since 1980, Your Old Hand Todd plays all the Jazz from ragtime to now:  Bebop, Post-bop, vocalists, Big Band, Third Stream, Fusion. . .even some Western Swing.  With a theme every week to musically riff on, we'll get your through the late hours of your Monday with happy ears.",
+            "djs": [
+                {
+                    "dj name": "Todd Schweiger",
+                    "dj email": "schweigerlaw@gmail.com",
+                    "dj type": "community"
+                }
+            ]
+        },
+        {
+            "id": "000002",
+            "show name": "Left of the Dial",
+            "status": "Active",
+            "show date": "Thursday",
+            "start": "9:00",
+            "end": "12:00",
+            "length": "3",
+            "short": "None",
+            "description": "Punk, Doom, Metal, Real Country, Alternative, Whatever moves us at the time... plus requests!",
+            "djs": [
+                {
+                    "dj name": "Jason Beert",
+                    "dj email": "rodan666@hotmail.com",
+                    "dj type": "community"
+                }
+            ]
+        },
+        {
+            "id": "000003",
+            "show name": "Janitors of the Apocolypse",
+            "status": "Active",
+            "show date": "Saturday",
+            "start": "12:00",
+            "end": "15:00",
+            "length": "3",
+            "short": "None",
+            "description": "Destiny's powerful hand has made the bed of my future, and it's up to me to lie in it. I am destined to be a radio DJ. To right wrongs, to play great, somewhat obscure songs that haven't received a chance to be heard, and to pound two-fisted power pop into the ears of listeners everywhere. And you don't fight destiny. No sir. And, you don't eat crackers in the bed of your future, or you get all... scratchy, like an old vinyl record.",
+            "djs": [
+                {
+                    "dj name": "William Cross",
+                    "dj email": "william.cross@sdsmt.edu",
+                    "dj type": "faculty"
+                }
+            ]
+        },
+        {
+            "id": "000004",
+            "show name": "Bring The Pogo",
+            "status": "Active",
+            "show date": "Sunday",
+            "start": "21:00",
+            "end": "0:00",
+            "length": "",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000005",
+            "show name": "The Cult",
+            "status": "Active",
+            "show date": "Friday",
+            "start": "21:00",
+            "end": "0:00",
+            "length": "",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000006",
+            "show name": "Temporary Nostalgia",
+            "status": "Active",
+            "show date": "Tuesday",
+            "start": "18:00",
+            "end": "21:00",
+            "length": "3",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000007",
+            "show name": "Roggoidian Radio",
+            "status": "Active",
+            "show date": "Sunday",
+            "start": "13:00",
+            "end": "14:00",
+            "length": "1",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000008",
+            "show name": "Will's Magic Broadcast",
+            "status": "Active",
+            "show date": "Tuesday",
+            "start": "9:00",
+            "end": "11:00",
+            "length": "2",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000009",
+            "show name": "Mirage's NightTime Groovies",
+            "status": "Active",
+            "show date": "Sunday",
+            "start": "20:00",
+            "end": "21:00",
+            "length": "1",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000010",
+            "show name": "Avocado Green",
+            "status": "Active",
+            "show date": "Monday",
+            "start": "15:00",
+            "end": "18:00",
+            "length": "3",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000011",
+            "show name": "Shawn and Jeff",
+            "status": "Active",
+            "show date": "Wednesday",
+            "start": "18:00",
+            "end": "21:00",
+            "length": "3",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000012",
+            "show name": "Elsewhere",
+            "status": "Active",
+            "show date": "Thursday",
+            "start": "19:00",
+            "end": "21:00",
+            "length": "2",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000013",
+            "show name": "Who's on Aux",
+            "status": "Active",
+            "show date": "Thursday",
+            "start": "17:00",
+            "end": "18:00",
+            "length": "1",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000014",
+            "show name": "Kirby",
+            "status": "Active",
+            "show date": "Friday",
+            "start": "17:00",
+            "end": "18:00",
+            "length": "1",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000015",
+            "show name": "The Whatever Place",
+            "status": "Active",
+            "show date": "Friday",
+            "start": "19:00",
+            "end": "21:00",
+            "length": "2",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000016",
+            "show name": "The Cult",
+            "status": "Active",
+            "show date": "Saturday",
+            "start": "0:00",
+            "end": "2:00",
+            "length": "2",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000017",
+            "show name": "Lucas/Campbell",
+            "status": "Active",
+            "show date": "Saturday",
+            "start": "15:00",
+            "end": "17:00",
+            "length": "2",
+            "short": "",
+            "description": "",
+            "djs": []
+        },
+        {
+            "id": "000018",
+            "show name": "Killer Beats",
+            "status": "Active",
+            "show date": "Saturday",
+            "start": "17:00",
+            "end": "18:00",
+            "length": "1",
+            "short": "",
+            "description": "",
+            "djs": []
+        }
+    ]
+}
