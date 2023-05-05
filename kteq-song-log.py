@@ -4,12 +4,14 @@ from tkinter import *
 from tkinter import ttk
 import csv
 import datetime
-from PIL import ImageTk, Image
+from PIL import ImageTk
 
-#imports
 import shows
 import psa
 import instructions
+
+from swear import SwearLog
+from lyric import LyricLog
 
 LOG_ID   = 0
 LOG_SONG = 1
@@ -30,6 +32,11 @@ def logSong(*args):
 		songwriter = csv.writer(songlog, delimiter=',')
 		songwriter.writerow([date, time, song, artist, composer, show])
 
+    # Also create a general "song_log.csv" that can be accessed whenever.
+	with open("song_log.csv", 'a', newline='') as songlog:
+		songwriter = csv.writer(songlog, delimiter=',')
+		songwriter.writerow([date, time, song, artist, composer, show])
+
 	#log to nowPlaying.txt
 	nowPlaying(source=LOG_SONG)
 
@@ -44,7 +51,7 @@ def logSong(*args):
 def logID():
 	show = showName.get()
 	now = datetime.datetime.now()
-	
+
 	filename = 'bmi_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
 	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
 	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
@@ -52,19 +59,23 @@ def logID():
 	with open(filename, 'a', newline='') as idlog:
 		idwriter = csv.writer(idlog, delimiter=',')
 		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
-	
+
+    # Also create a general "song_log.csv" that can be accessed whenever.
+	with open("song_log.csv", 'a', newline='') as idlog:
+		idwriter = csv.writer(idlog, delimiter=',')
+		idwriter.writerow([date, time, 'STATION TAG', 'KTEQ', '', show])
+
 	#log to nowPlaying.txt
 	nowPlaying(source=LOG_ID)
 
 	#update ticker
 	updateTicker(source=LOG_ID)
 
-
 def logPSA(*args):
 	show = showName.get()
 	psa  = psaName.get()
 	now = datetime.datetime.now()
-	
+
 	filename  = 'bmi_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
 	filename2 = 'psa_' + str(now.month).zfill(2) + '_' + str(now.year) + '.csv'
 	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
@@ -77,7 +88,16 @@ def logPSA(*args):
 	with open(filename2, 'a', newline='') as psalog:
 		psawriter = csv.writer(psalog, delimiter=',')
 		psawriter.writerow([date, time, psa])
-	
+
+    # Also create a general "song_log.csv" that can be accessed whenever.
+	with open("song_log.csv", 'a', newline='') as psalog:
+		psawriter = csv.writer(psalog, delimiter=',')
+		psawriter.writerow([date, time, psa, 'PSA', '', show])
+
+	with open("psa_log.csv", 'a', newline='') as psalog:
+		psawriter = csv.writer(psalog, delimiter=',')
+		psawriter.writerow([date, time, psa, 'PSA', '', show])
+
 	#log to nowPlaying.txt
 	nowPlaying(source=LOG_PSA)
 
@@ -85,7 +105,7 @@ def logPSA(*args):
 	updateTicker(source=LOG_PSA)
 
 def updateTicker(source=LOG_ID):
-	
+
 	song     = songName.get()
 	artist   = songArtist.get()
 	composer = songComposer.get()
@@ -123,7 +143,6 @@ def updateTicker(source=LOG_ID):
 	prevSong2composer_lbl.config(text=prevSong1composer_lbl.cget("text"))
 	prevSong2show_lbl.config(    text=prevSong1show_lbl.cget("text"))
 
-
 	if(source==LOG_ID):
 		prevSong1date_lbl.config(    text=date)
 		prevSong1time_lbl.config(    text=time)
@@ -148,7 +167,6 @@ def updateTicker(source=LOG_ID):
 
 
 def nowPlaying( source=LOG_ID ):
-	
 	#Write to a file what song is currently playing (or what have you)
 	filename = 'nowPlaying.txt'
 	song     = songName.get()
@@ -177,32 +195,45 @@ def refreshShowList():
 	showName.set('')
 	showList = None
 	showList = shows.Shows()
-	
+
 	showName.set(showList.list[0])
 	showNameList['menu'].delete(0, 'end')
 	for show in showList.list:
 		showNameList['menu'].add_command(label=show, command=lambda s=show: showName.set(s))
-	
+
+def lyricLogDialog():
+    ly = LyricLog()
+
+def swearLogDialog():
+    date = prevSong1date_lbl.cget("text")
+    time = prevSong1time_lbl.cget("text")
+    song = prevSong1title_lbl.cget("text")
+    artist = prevSong1artist_lbl.cget("text")
+    composer = prevSong1composer_lbl.cget("text")
+    show = prevSong1show_lbl.cget("text")
+
+    sw = SwearLog(date,time,song,artist,composer,show)
 
 #create the window and title it
 root = Tk()
 root.title("KTEQ 91.3FM SONG AND PSA LOG")
 root.resizable(FALSE,FALSE)
+
 #create the frames
-infoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
-songFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
-psaFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
-idFrame   = ttk.Frame(root, borderwidth=5, relief="sunken")
-tickFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
-logoFrame = ttk.Frame(root, borderwidth=5, relief="sunken")
+infoFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
+songFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
+psaFrame   = ttk.Frame(root, borderwidth=5, relief="sunken")
+idFrame    = ttk.Frame(root, borderwidth=5, relief="sunken")
+tickFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
+logoFrame  = ttk.Frame(root, borderwidth=5, relief="sunken")
 
 #place frames
-infoFrame.grid(column=0,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
-songFrame.grid(column=0,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
-psaFrame.grid( column=6,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
-idFrame.grid(  column=6,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
-tickFrame.grid(column=0,  row=10, columnspan=18, rowspan=5,  sticky=(N, W, E, S))
-logoFrame.grid(column=12, row=0,  columnspan=6,  rowspan=10, sticky=(N, W, E, S))
+infoFrame.grid( column=0,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+songFrame.grid( column=0,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+psaFrame.grid(  column=6,  row=5,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+idFrame.grid(   column=6,  row=0,  columnspan=6,  rowspan=5,  sticky=(N, W, E, S))
+tickFrame.grid( column=0,  row=10, columnspan=18, rowspan=5,  sticky=(N, W, E, S))
+logoFrame.grid( column=12, row=0,  columnspan=6,  rowspan=10, sticky=(N, W, E, S))
 
 #CREATE NEW INSTANCE OF SHOWS AND PSAS
 showList = shows.Shows()
@@ -226,14 +257,17 @@ songName_entry     = ttk.Entry(songFrame, width=7, textvariable=songName)
 songArtist_entry   = ttk.Entry(songFrame, width=7, textvariable=songArtist)
 songComposer_entry = ttk.Entry(songFrame, width=7, textvariable=songComposer)
 
-#Create image
-img_logo = ImageTk.PhotoImage(file="img/kteq-logo.jpg")
-
 #Place Text Boxes
 songComposer_entry.grid(column=3, row=3, columnspan=6, sticky=(W, E))
 songArtist_entry.grid(  column=3, row=2, columnspan=6, sticky=(W, E))
 songName_entry.grid(    column=3, row=1, columnspan=6, sticky=(W, E))
 
+#Create image
+img_logo = ImageTk.PhotoImage(file="img/kteq-logo.jpg")
+imgLogo = ttk.Label(logoFrame, image=img_logo)
+
+#Place Image
+imgLogo.grid(column=0, row=0, sticky=(N, W, E, S))
 
 #Create drop downs
 showNameList = OptionMenu(infoFrame, showName, *showList.list)
@@ -244,23 +278,21 @@ showNameList.grid(column=3, row=1, sticky=(W, E))
 psaNameList.grid(column=3, row=1, columnspan=3, sticky=(W, E))
 
 #Create buttons
-logSong      = ttk.Button(songFrame, text="Log Song",     command=logSong)
-logPSA       = ttk.Button(psaFrame,  text="Log PSA",      command=logPSA)
-logID        = ttk.Button(idFrame,   text="Log ID",       command=logID)
-refreshShows = ttk.Button(infoFrame, text="Refresh List", command=refreshShowList)
+logSong       = ttk.Button(songFrame, text="Log Song",     command=logSong)
+logPSA        = ttk.Button(psaFrame,  text="Log PSA",      command=logPSA)
+logID         = ttk.Button(idFrame,   text="Log ID",       command=logID)
+refreshShows  = ttk.Button(infoFrame, text="Refresh List", command=refreshShowList)
 
-#Create Image
-imgLogo = ttk.Label(logoFrame, image=img_logo)
+swearLog      = ttk.Button(logoFrame, text="SWEAR LOG", command=swearLogDialog)
+lyricLog      = ttk.Button(logoFrame, text="SHOW LYRICS", command=lyricLogDialog)
 
 #place buttons
 logSong.grid(     column=2, row=4, sticky=(W, E))
 logPSA.grid(      column=2, row=3, sticky=(W, E))
 logID.grid(       column=2, row=3, sticky=(N, W, E, S))
 refreshShows.grid(column=2, row=1, sticky=(N, W, E, S))
-
-#Place Image
-imgLogo.grid(column=2, row=3, sticky=(N, W, E, S))
-
+swearLog.grid(column=0, row=3,rowspan=2,columnspan=2,sticky=(N, W, E, S))
+lyricLog.grid(column=0, row=1,rowspan=2,columnspan=2,sticky=(N, W, E, S))
 
 #Create labels
 songName_lbl     = ttk.Label(songFrame, text="Song Name:")
@@ -273,7 +305,6 @@ howTo_Show_lbl = ttk.Label(infoFrame, text=instructions.show, wraplength=400)
 howTo_Song_lbl = ttk.Label(songFrame, text=instructions.song, wraplength=400)
 howTo_ID_lbl   = ttk.Label(idFrame,   text=instructions.id  , wraplength=400)
 howTo_PSA_lbl  = ttk.Label(psaFrame,  text=instructions.psa , wraplength=400)
-
 
 #Labels for ticker
 prevSong1date_lbl     = ttk.Label(tickFrame, padding=6, text="")
@@ -354,6 +385,5 @@ prevSong5title_lbl.grid(   column=4,  row=4, columnspan=2, sticky=(W, E))
 prevSong5artist_lbl.grid(  column=6,  row=4, columnspan=2, sticky=(W, E))
 prevSong5composer_lbl.grid(column=8,  row=4, columnspan=2, sticky=(W, E))
 prevSong5show_lbl.grid(    column=10, row=4, columnspan=2, sticky=(W, E))
-
 
 root.mainloop()
