@@ -11,7 +11,6 @@ import psa
 import instructions
 
 from swear import SwearLog
-from lyric import LyricLog
 
 LOG_ID   = 0
 LOG_SONG = 1
@@ -191,6 +190,18 @@ def nowPlaying( source=LOG_ID ):
 			line = default
 	nowPlay.write(line)
 
+def logShow():
+	show = showName.get()
+	now = datetime.datetime.now()
+
+	filename  = 'shows.csv'
+	date = str(now.month).zfill(2) + '/' + str(now.day).zfill(2) + '/' + str(now.year)
+	time = str(now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
+
+	with open(filename, 'a', newline='') as showlog:
+		logwriter = csv.writer(showlog, delimiter=',')
+		logwriter.writerow([show, date, time])
+
 def refreshShowList():
 	showName.set('')
 	showList = None
@@ -201,8 +212,6 @@ def refreshShowList():
 	for show in showList.list:
 		showNameList['menu'].add_command(label=show, command=lambda s=show: showName.set(s))
 
-def lyricLogDialog():
-    ly = LyricLog()
 
 def swearLogDialog():
     date = prevSong1date_lbl.cget("text")
@@ -282,17 +291,17 @@ logSong       = ttk.Button(songFrame, text="Log Song",     command=logSong)
 logPSA        = ttk.Button(psaFrame,  text="Log PSA",      command=logPSA)
 logID         = ttk.Button(idFrame,   text="Log ID",       command=logID)
 refreshShows  = ttk.Button(infoFrame, text="Refresh List", command=refreshShowList)
+logShows	  = ttk.Button(infoFrame, text="Log Show", command=logShow)
 
 swearLog      = ttk.Button(logoFrame, text="SWEAR LOG", command=swearLogDialog)
-lyricLog      = ttk.Button(logoFrame, text="SHOW LYRICS", command=lyricLogDialog)
 
 #place buttons
 logSong.grid(     column=2, row=4, sticky=(W, E))
 logPSA.grid(      column=2, row=3, sticky=(W, E))
 logID.grid(       column=2, row=3, sticky=(N, W, E, S))
 refreshShows.grid(column=2, row=1, sticky=(N, W, E, S))
+logShows.grid(column=3, row=2, sticky=(N, W, E, S))
 swearLog.grid(column=0, row=3,rowspan=2,columnspan=2,sticky=(N, W, E, S))
-lyricLog.grid(column=0, row=1,rowspan=2,columnspan=2,sticky=(N, W, E, S))
 
 #Create labels
 songName_lbl     = ttk.Label(songFrame, text="Song Name:")
